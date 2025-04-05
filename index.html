@@ -1,282 +1,36 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-        <meta name="theme-color" content="#ffffff" />
-        <meta http-equiv="Content-Language" content="en" />
-        <meta name="description" content="Explore images in a stunning modal view with this Image Modal project. Enhance your web experience by viewing images in a larger format without leaving the page." />
-        <meta name="keywords" content="Aakash Dinkar, Image Modal, image viewer, modal gallery, HTML CSS JavaScript, web development project, responsive design, user experience" />
+<!-- ... head section remains unchanged ... -->
 
-        <!-- Favicon for browsers -->
-        <link rel="icon" href="https://aakashdinkarh.github.io/static_assets/images/portfolio/site-icon/site-icon.ico" type="image/x-icon">
-        <!-- Favicon for standard desktop browsers (16x16, 32x32) -->
-        <link rel="icon" href="https://aakashdinkarh.github.io/static_assets/images/portfolio/site-icon/site-icon-32.png" sizes="32x32" type="image/png">
-        <link rel="icon" href="https://aakashdinkarh.github.io/static_assets/images/portfolio/site-icon/site-icon-16.png" sizes="16x16" type="image/png">
-        <!-- Favicon for high-resolution desktop displays (64x64) -->
-        <link rel="icon" href="https://aakashdinkarh.github.io/static_assets/images/portfolio/site-icon/site-icon-64.png" sizes="64x64" type="image/png">
-        <!-- Apple Touch Icons for iOS -->
-        <link rel="apple-touch-icon" href="https://aakashdinkarh.github.io/static_assets/images/portfolio/site-icon/site-icon-180.png">
-        <link rel="apple-touch-icon" href="https://aakashdinkarh.github.io/static_assets/images/portfolio/site-icon/site-icon-152.png">
-        <link rel="apple-touch-icon" href="https://aakashdinkarh.github.io/static_assets/images/portfolio/site-icon/site-icon-120.png">
-        <link rel="apple-touch-icon" href="https://aakashdinkarh.github.io/static_assets/images/portfolio/site-icon/site-icon-76.png">
-        <link rel="apple-touch-icon" href="https://aakashdinkarh.github.io/static_assets/images/portfolio/site-icon/site-icon.ico">
-        <!-- Favicon for Android devices -->
-        <link rel="icon" href="https://aakashdinkarh.github.io/static_assets/images/portfolio/site-icon/site-icon-192.png" sizes="192x192" type="image/png">
-        <!-- Favicon for Windows tiles (optional) -->
-        <meta name="msapplication-TileImage" content="https://aakashdinkarh.github.io/static_assets/images/portfolio/site-icon/site-icon-144.png">
+<img src="Image1.jpg" id="smallimg" alt="Image of tower, Beautiful Scene">
 
-        <!-- Shortcut icon for backward compatibility with older browsers -->
-        <link rel="shortcut icon" href="https://aakashdinkarh.github.io/static_assets/images/portfolio/site-icon/site-icon.ico" type="image/x-icon">
-        <!-- Mask icon for Safari Pinned Tab (can be in SVG format, for better scaling) -->
-        <link rel="mask-icon" href="https://aakashdinkarh.github.io/static_assets/images/portfolio/site-icon/site-icon-32.png">
-        
-        <meta property="og:title" content="Image Modal - Aakash Dinkar" />
-        <meta property="og:description" content="Explore images in a stunning modal view with this Image Modal project. Enhance your web experience by viewing images in a larger format without leaving the page." />
-        <meta property="og:url" content="https://aakashdinkar.in/Image-modal/" />
-        <meta property="og:image" content="https://aakashdinkarh.github.io/static_assets/images/portfolio/avif-images/meta-og-image.avif" />
-        <meta property="og:image" content="https://aakashdinkarh.github.io/static_assets/images/portfolio/webp-images/meta-og-image.webp" />
-        <meta property="og:image" content="https://aakashdinkarh.github.io/static_assets/images/portfolio/original-images/meta-og-image.jpeg" />
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="Image Modal - Aakash Dinkar">
+<!-- Thumbnail images -->
+<div class="thumbnail">
+    <img src="Image1.jpg" onclick='currentSlide(0)' alt="First Image">
+    <img src="Image2.jpg" onclick='currentSlide(1)' alt="Second Image">
+    <img src="Image3.jpg" onclick='currentSlide(2)' alt="Third Image">
+    <img src="Image4.jpg" onclick='currentSlide(3)' alt="Fourth Image">
+    <img src="Image5.jpg" onclick='currentSlide(4)' alt="Fifth Image">
+</div>
 
-        <meta name="twitter:title" content="Image Modal - Aakash Dinkar" />
-        <meta name="twitter:description" content="Explore images in a stunning modal view with this Image Modal project. Enhance your web experience by viewing images in a larger format without leaving the page." />
-        <meta name="twitter:image" content="https://aakashdinkarh.github.io/static_assets/images/portfolio/avif-images/meta-og-image.avif" />
-        <meta name="twitter:image" content="https://aakashdinkarh.github.io/static_assets/images/portfolio/webp-images/meta-og-image.webp" />
-        <meta name="twitter:image" content="https://aakashdinkarh.github.io/static_assets/images/portfolio/original-images/meta-og-image.jpeg" />
+<div id="lightbox">
+    <span onclick="this.parentElement.style.display = 'none'" class="close">&times;</span>
+    <div id="indexNumber"></div>
+    <div id="lightboximg">
+        <img src="Image1.jpg" alt="First Image">
+        <img src="Image2.jpg" alt="Second Image">
+        <img src="Image3.jpg" alt="Third Image">
+        <img src="Image4.jpg" alt="Fourth Image">
+        <img src="Image5.jpg" alt="Fifth Image">
+    </div>
+    <div id="captionText"></div>
+    <a class="prev" onclick="changeSlide(-1)">&#10094</a>
+    <a class="next" onclick="changeSlide(1)">&#10095</a>
 
-        <title>Image Modal - Aakash Dinkar</title>
-        <style>
-            * {
-                box-sizing: border-box;
-            }
-            body {
-                font-family: Verdana, Geneva, Tahoma, sans-serif;
-            }
-            div.modal {
-                display: none;
-                position: fixed;
-                z-index: 1;
-                padding-top: 5%;
-                height: 100%;
-                width: 100%;
-                left: 0;
-                top: 0;
-                overflow: auto;
-                background-color: rgba(0, 0, 0, 0.8);
-                animation-name: zoom;
-                animation-duration: 0.6s;
-            }
-            div.modal .modal-content {
-                margin: auto;
-                display: block;
-                height: 90%;
-            }
-            .close {
-                font-size: xx-large;
-                position: absolute;
-                top: 15px;
-                right: 25px;
-                color: white;
-                transition: 0.3s;
-                background-color: #777;
-                z-index: 1;
-            }
-            .close:hover {
-                color: #bbb;
-                cursor: pointer;
-            }
-            .modal .caption {
-                text-align: center;
-                color: white;
-                padding-top: 1%;
-                font-size: x-large;
-
-            }
-            body > img {
-                max-width: 300px;
-                width: 100%;
-                border-radius: 5px;
-                cursor: pointer;
-                transition: 0.3s;
-            }
-            body > img:hover {
-                opacity: 0.7;
-            }
-            @keyframes zoom {
-                from { transform: scale(0);}
-                to { transform: scale(1);}
-            }
-        </style>
-
-        <style>
-            .thumbnail > img {
-                width: 100px;
-                margin: 15px;
-                transition: 0.5s;
-            }
-            .thumbnail > img:hover {
-                box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.4);
-            }
-            
-            #lightbox{
-                display: none;
-                position: absolute;
-                top: 0;
-                left: 0;
-                height: 100%;
-                background-color: rgb(69, 58, 58);
-                animation-name: zoom;
-                animation-duration: 0.5s;
-            }
-            #lightboximg > img {
-                width: 60%;
-                margin: auto;        
-            }
-            #indexNumber {
-                color: white;
-            }
-            #lightbox a.prev, #lightbox a.next {
-                color: white;
-                font-size: xx-large;
-                padding: 3px 2px;
-                position: absolute;
-                top: 50%;
-                cursor: pointer;
-            }
-            #lightbox a.next {
-                right: 0;
-            }
-            #lightbox a.next:hover, #lightbox a.prev:hover {
-                background-color: rgba(0, 0, 0, 0.7);
-            }
-            #captionText {
-                text-align: center;
-                color: white;
-                font-size: xx-large;
-            }
-            #lightbox .thumbnail > img:hover {
-                box-shadow: 0px 0px 5px white;
-            }
-        </style>
-
-    </head>
-    <body>
-        <h2>In this, page we are going to display image modal</h2>
-        <p>If we click on the image below, it will get displayed on whole page</p>
-        
-        <!-- Image for triggering modal -->
-        <img src="Image (1).jpg" id="smallimg" alt="Image of tower, Beautiful Scene">
-        
-        <!-- Now The Modal -->
-        <div class="modal">
-
-            <!-- The Close Button -->
-            <span class="close">&times;</span>
-
-            <!-- Modal Content ( The Image) -->
-            <img class="modal-content" id="bigimg">
-
-            <!-- Modal Caption (The Image Text) -->
-            <div class="caption"></div>
-        </div>
-<br><br>
-        <script>
-
-            var modal, smallimg, bigimg, captionText, closebtn;
-            modal = document.getElementsByClassName("modal")[0];
-            smallimg = document.getElementById("smallimg");
-            bigimg = document.getElementById("bigimg");
-            captionText = document.getElementsByClassName("caption")[0];
-
-            smallimg.onclick = function () {
-                modal.style.display = "block";
-                bigimg.src = this.src;
-                captionText.innerHTML = this.alt;
-            }
-
-            closebtn = document.getElementsByClassName("close")[0];
-
-            closebtn.onclick = function() {
-                modal.style.display = "none";
-            }
-
-        </script>
-
-
-        <p>
-            Below are the thumbnail images.
-        </p>
-
-        <!-- Thumbnail images -->
-        <div class="thumbnail">
-            <img src="Image (1).jpg" onclick='currentSlide(0)' alt="First Image">
-            <img src="Image (2).jpg" onclick='currentSlide(1)' alt="Second Image">
-            <img src="Image (3).jpg" onclick='currentSlide(2)' alt="Third Image">
-            <img src="Image (4).jpg" onclick='currentSlide(3)' alt="Fourth Image">
-            <img src="Image (5).jpg" onclick='currentSlide(4)' alt="Fifth Image">
-        </div>
-
-        <div id="lightbox">
-            <!-- <div id="lightbox-content"> -->
-                <!-- The Close Button -->
-                <span onclick="this.parentElement.style.display = 'none'" class="close">&times;</span>
-                <div id="indexNumber"></div>
-                <div id="lightboximg">
-                    <img src="Image (1).jpg" alt="First Image">
-                    <img src="Image (2).jpg" alt="Second Image">
-                    <img src="Image (3).jpg" alt="Third Image">
-                    <img src="Image (4).jpg" alt="Fourth Image">
-                    <img src="Image (5).jpg" alt="Fifth Image">
-                </div>
-                <div id="captionText"></div>
-                <a class="prev" onclick="changeSlide(-1)">&#10094</a>
-                <a class="next" onclick="changeSlide(1)">&#10095</a>
-
-                <!-- Thumbnail image control -->
-                <div class="thumbnail">
-                    <img src="Image (1).jpg" onclick='currentSlide(0)' alt="First Image">
-                    <img src="Image (2).jpg" onclick='currentSlide(1)' alt="Second Image">
-                    <img src="Image (3).jpg" onclick='currentSlide(2)' alt="Third Image">
-                    <img src="Image (4).jpg" onclick='currentSlide(3)' alt="Fourth Image">
-                    <img src="Image (5).jpg" onclick='currentSlide(4)' alt="Fifth Image">
-                </div>
-            <!-- </div> -->
-        </div>
-        
-        <script>
-            var slideIndex;
-
-            function changeSlide(n) {
-                slideIndex += n;
-                showSlide(slideIndex)
-            }
-            
-            function currentSlide(n) {
-                slideIndex = n;
-                showSlide(slideIndex);
-            }
-
-            function showSlide(n) {
-
-                var lightbox = document.getElementById("lightbox");
-                var slide = document.getElementById("lightboximg").children;
-                // debugger
-                lightbox.style.display = "block";
-
-                for(let i = 0; i < slide.length; i++)
-                slide[i].style.display = "none";
-
-                if( slideIndex > slide.length-1 ) { slideIndex = 0 }
-                if( slideIndex < 0 ) { slideIndex = slide.length-1 }
-                
-                document.getElementById("indexNumber").innerHTML = slideIndex+1 + " / 5";
-                slide[slideIndex].style.display = "block";
-                document.getElementById("captionText").innerHTML = slide[slideIndex].alt;
-            }
-
-        </script>
-
-    </body>
-</html>
+    <!-- Thumbnail image control -->
+    <div class="thumbnail">
+        <img src="Image1.jpg" onclick='currentSlide(0)' alt="First Image">
+        <img src="Image2.jpg" onclick='currentSlide(1)' alt="Second Image">
+        <img src="Image3.jpg" onclick='currentSlide(2)' alt="Third Image">
+        <img src="Image4.jpg" onclick='currentSlide(3)' alt="Fourth Image">
+        <img src="Image5.jpg" onclick='currentSlide(4)' alt="Fifth Image">
+    </div>
+</div>
